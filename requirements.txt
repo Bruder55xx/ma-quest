@@ -1,1 +1,4 @@
 smart-airdrop-claimer
+Flask
+websockets
+loguru
