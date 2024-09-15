@@ -13,10 +13,21 @@ from core.task import process_do_task, process_claim_ref
 from core.farm import process_farming
 from core.boost import process_buy_daily_booster, process_buy_game_booster
 from core.game import process_play_game
-
+from keep_alive import keep_alive
+import websockets
+from loguru import logger
+from flask import Flask
 import time
 
+# Flask application
+app = Flask(__name__)
 
+@app.route('/')
+def index():
+    return "Hello World!"
+
+def run_flask():
+    app.run(debug=True)
 class MatchQuest:
     def __init__(self):
         # Get file directory
@@ -137,6 +148,7 @@ class MatchQuest:
 
 if __name__ == "__main__":
     try:
+        keep_alive()
         matchquest = MatchQuest()
         matchquest.main()
     except KeyboardInterrupt:
